@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Master - Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1><a href="{{ url_for('home') }}">Task Master</a></h1>
+        <nav>
+            <ul>
+                {% if 'username' in session %}
+                <li><a href="{{ url_for('tasks') }}">Tasks</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Sign Up</h2>
+        <form action="/submit-signup-form" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first_name" required>
+
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last_name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm_password" required>
+
+            <label for="mobile-number">Mobile Number:</label>
+            <input type="tel" id="mobile-number" name="mobile_number" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+    </main>
+    <footer>
+        <a href="{{ url_for('about') }}">About Us</a>
+    </footer>
+</body>
+</html>

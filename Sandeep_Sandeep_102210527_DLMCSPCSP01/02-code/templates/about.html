@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Master - About Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1><a href="{{ url_for('home') }}">Task Master</a></h1>
+        <nav>
+            <ul>
+                {% if 'username' in session %}
+                <li><a href="{{ url_for('tasks') }}">Tasks</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>About Us</h2>
+        <p>Welcome to Task Master! We are dedicated to providing you with a seamless task management experience, helping you to manage both personal and professional tasks effectively.</p>
+
+        <h3>Our Mission</h3>
+        <p>Our mission is to empower individuals to increase their productivity and reduce stress through effective time management tools.</p>
+
+        <h3>Terms and Conditions</h3>
+        <p>Please read our terms and conditions carefully to understand the guidelines and legal requirements associated with using the Task Master application.</p>
+
+        <h3>Frequently Asked Questions (FAQs)</h3>
+        <div id="faqs">
+            <h4>How do I reset my password?</h4>
+            <p>You can reset your password by going to the login page and clicking on the "Forgot Password?" link.</p>
+
+            <h4>How can I delete my account?</h4>
+            <p>If you wish to delete your account, please contact our support team through the contact form available on our support page.</p>
+
+            <h4>Can I sync my tasks across devices?</h4>
+            <p>Yes, Task Master supports syncing across multiple devices to ensure that your tasks are always up-to-date, no matter where you access your account from.</p>
+        </div>
+    </main>
+    <footer>
+        <a href="{{ url_for('about') }}">About Us</a>
+    </footer>
+</body>
+</html>

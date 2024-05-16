@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1><a href="{{ url_for('home') }}">Task Master</a></h1>
+        <nav>
+            <ul>
+                {% if 'username' in session %}
+                <li><a href="{{ url_for('tasks') }}">Tasks</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="slideshow">
+                <img src="{{ url_for('static', filename='demo-task-image.jpeg') }}" alt="stay ahead always" style="width: 100%; height: auto;">
+                <img src="{{ url_for('static', filename='second-image.jpeg') }}" alt="stay ahead always" style="width: 100%; height: auto;">
+                <img src="{{ url_for('static', filename='third-image.jpeg') }}" alt="stay ahead always" style="width: 100%; height: auto;">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <a href="{{ url_for('about') }}">About Us</a>
+    </footer>
+</body>
+</html>

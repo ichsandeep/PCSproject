@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Master - Manage Tasks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1><a href="{{ url_for('home') }}">Task Master</a></h1>
+        <nav>
+            <ul>
+                {% if 'username' in session %}
+                <li><a href="{{ url_for('tasks') }}">Tasks</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Manage Your Tasks</h2>
+        <section>
+            <h3>Add New Task</h3>
+            <form action="/submit-new-task" method="POST">
+                <label for="task-name">Task Name:</label>
+                <input type="text" id="task-name" name="task_name" required>
+
+                <label for="task-desc">Description:</label>
+                <textarea id="task-desc" name="task_description" required></textarea>
+
+                <label for="task-date">Due Date:</label>
+                <input type="date" id="task-date" name="task_date" required>
+
+                <button type="submit">Add Task</button>
+            </form>
+        </section>
+
+        <section>
+            <h3>Your Tasks</h3>
+            <ul id="task-list">
+                {% for task in tasks %}
+                <li>
+                    {{ task.name }} - {{ task.description }} - Due: {{ task.due_date }}
+                    <a href="{{ url_for('edit_task', task_id=task.id) }}">Edit</a>
+                    <a href="{{ url_for('delete_task', task_id=task.id) }}" onclick="return confirm('Are you sure?');">Remove</a>
+                </li>
+                {% else %}
+                <li>No tasks found.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+
+    </main>
+    <footer>
+        <a href="{{ url_for('about') }}">About Us</a>
+    </footer>
+</body>
+</html>
